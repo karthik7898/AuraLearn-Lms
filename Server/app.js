@@ -1,13 +1,22 @@
-const express = require("express")
 
-const app = express()
+require("dotenv").config(); 
 
-app.get("/welcome",(req,res)=>{
-    res.send("Welcome back")
-})
+const express = require("express");
+const connectDb = require("./Config/db");
+const courseRoute = require("./Routes/courseRoute");
+const authRoute = require("./Routes/authRoute");
+
+const app = express();
+app.use(express.json()); 
 
 
-app.listen(3000, ()=>{
+
+connectDb();
+
+app.use("/api/courses",courseRoute)
+app.use("/api/auth",authRoute)
+
+
+app.listen(3000, () => {
     console.log("Listening to the PORT");
-    
-})
+});
