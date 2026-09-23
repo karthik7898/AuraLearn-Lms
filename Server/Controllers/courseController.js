@@ -1,4 +1,4 @@
-// Placeholder functions for handling course logic
+
 const getCourses = async (req, res) => {
     res.json({ message: "Fetch all courses logic" });
 };
