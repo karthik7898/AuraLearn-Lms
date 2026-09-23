@@ -14,36 +14,41 @@ const protect = async (req, res, next) => {
         });
     }
 
-    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    try {
+        
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
-    req.user = await User.findById(decoded.id);
+        req.user = await User.findById(decoded.id);
 
-    if (!req.user) {
+        if (!req.user) {
+            return res.status(401).json({
+                message: "No user found with this id"
+            });
+        }
+
+        next();
+    } catch (error) {
+        
         return res.status(401).json({
-            message: "No user found with this id"
+            message: "Not authorized, token is invalid or malformed",
+            error: error.message
         });
     }
-
-
-    
-    next();
-  
 };
-
 
 const authorize = (...allowedRoles) => {
     return (req, res, next) => {
         if (!req.user || !allowedRoles.includes(req.user.role)) {
             return res.status(403).json({
                 message: "You do not have permission to perform this action"
-            })
+            });
         }
 
-        return next()
-    }
-}
+        return next();
+    };
+};
 
 module.exports = {
     protect,
     authorize
-}
+};
