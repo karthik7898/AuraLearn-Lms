@@ -1,17 +1,25 @@
-function getCourse(req, res) {
-}
+// Placeholder functions for handling course logic
+const getCourses = async (req, res) => {
+    res.json({ message: "Fetch all courses logic" });
+};
 
-function createCourse(req, res) {
-}
+const getCourseById = async (req, res) => {
+};
 
-function updateCourse(req, res) {
-}
+const createCourses = async (req, res) => {
+};
 
-function deleteCourse(req, res) {
-}
+const updateCourses = async (req, res) => {
+};
 
+const deleteCourses = async (req, res) => {
+    
+};
 
-
-module.exports={
-    getCourse,createCourse,updateCourse,deleteCourse
-}
+module.exports = {
+    getCourses,
+    getCourseById,
+    createCourses,
+    updateCourses,
+    deleteCourses
+};
