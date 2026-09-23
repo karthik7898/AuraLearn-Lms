@@ -15,8 +15,9 @@ const userSchema = new mongoose.Schema({
     role: { 
         type: String, 
         required: true,
+        // Keep legacy values valid so existing users can still sign in.
         enum: {
-            values: ["Student", "admin", "trainer"]
+            values: ["student", "instructor", "admin", "Student", "trainer"]
         }
     }, 
     password: { 

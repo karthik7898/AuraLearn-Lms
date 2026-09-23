@@ -1,27 +1,17 @@
-const express = require("express");
+const express = require("express"); 
 const { protect, authorize } = require("../Middleware/authMiddleware");
-const { 
-    getCourses, 
-    createCourses, 
-    deleteCourses, 
-    updateCourses, 
-    getCourseById 
-} = require("../Controllers/courseController");
+const { getCourses, createCourse, updateCourse, deleteCourse, getCourseById } = require("../Controllers/courseController");
 
 const courseRoute = express.Router();
 
-
-courseRoute.get("/get", protect, (req, res) => {
-    res.json({
-        "Message": "Hi this is new get route checking it using protect . so we cant access this api without login "
-    });
-});
-
-
 courseRoute.get("/", getCourses);
-courseRoute.post("/", createCourses);
+
+courseRoute.post("/", protect, authorize('instructor', 'trainer', 'admin'), createCourse);
+
 courseRoute.get("/:id", getCourseById);
-courseRoute.put("/:id", updateCourses);
-courseRoute.delete("/:id", deleteCourses);
+
+courseRoute.put("/:id", protect, authorize('instructor', 'trainer', 'admin'), updateCourse);
+
+courseRoute.delete("/:id", protect, authorize('instructor', 'trainer', 'admin'), deleteCourse);
 
 module.exports = courseRoute;

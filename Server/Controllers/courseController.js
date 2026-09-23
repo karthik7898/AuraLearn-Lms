@@ -1,25 +1,23 @@
+async function getCourses(req, res) { 
+  
+} 
 
-const getCourses = async (req, res) => {
-    res.json({ message: "Fetch all courses logic" });
-};
+async function getCourseById(req, res) { 
+} 
 
-const getCourseById = async (req, res) => {
-};
+async function createCourse(req, res) { 
+} 
 
-const createCourses = async (req, res) => {
-};
+async function updateCourse(req, res) { 
+} 
 
-const updateCourses = async (req, res) => {
-};
+async function deleteCourse(req, res) { 
+} 
 
-const deleteCourses = async (req, res) => {
-    
-};
-
-module.exports = {
-    getCourses,
-    getCourseById,
-    createCourses,
-    updateCourses,
-    deleteCourses
+module.exports = { 
+  getCourses, 
+  getCourseById, 
+  createCourse, 
+  updateCourse, 
+  deleteCourse 
 };
